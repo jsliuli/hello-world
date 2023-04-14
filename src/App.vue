@@ -6,12 +6,28 @@
         <ChildCom/>
         <Child :messageParent="message" :dataNumParent="dataNum" @changeBtn="change"/> -->
         <Category :titleCountryParent="titleCountry">
-            <ul v-for="c in countries" :key="c.id" slot="center">
+            <template  slot-scope="demoslot">
+<!--                {{demoslot}}这里的demoslot是一个对象，里面包含了slotCountry这个属性-->
+            <ul v-for="c in demoslot.slotCountry" :key="c.id" >
+<!--                这里的slotCountry是在Category组件中定义的-->
                 <li>{{c.name}}</li>
             </ul>
-            <a href="" slot="footer">更多国家</a>
+            </template>
+<!--            <a href="" slot="footer">更多国家</a>-->
         </Category>
-        <Category  :titleCountryParent="titleFood">
+        <category>
+            <template slot-scope="demoCountry">
+                <ol>
+                    <li v-for="c in demoCountry.slotCountry" :key="c.id">{{c.name}}</li>
+                </ol>
+            </template>
+        </category>
+        <category>
+            <template slot-scope="demoCountry">
+                <h3 v-for="c in demoCountry.slotCountry" :key="c.id">{{c.name}} </h3>
+            </template>
+        </category>
+<!--        <Category  :titleCountryParent="titleFood">
             <ul v-for="c in foods" :key="c.id" slot="center">
                 <li>{{c.name}}</li>
             </ul>
@@ -21,7 +37,7 @@
         <Category :titleCountryParent="titlePhone">
             <img src="https://ecmb.bdimg.com/tam-ogel/42128323_-1799595190_480_320.jpg" slot="center">
             <a href="" slot="footer">小米商城</a>
-        </Category>
+        </Category>-->
     </div>
 </template>
 
@@ -47,12 +63,7 @@ export default {
             titlePhone: "手机",
             // message:"我是父组件要传递的数据",
             // dataNum:"2023-04-07",
-            countries: [
-                { name: '中国', id: 1 },
-                { name: '美国', id: 2 },
-                { name: '俄罗斯', id: 3 },
-                { name: '瑞士', id: 4 },
-            ],
+
             foods: [
                 { name: '火锅', id: 1 },
                 { name: '烧烤', id: 2 },
