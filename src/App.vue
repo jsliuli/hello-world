@@ -1,19 +1,19 @@
 <template>
     <div id="app">
-        <!-- <img alt="Vue logo" src="./assets/logo.png">
+<!--        &lt;!&ndash; <img alt="Vue logo" src="./assets/logo.png">
         <HelloWorld/>
         <DemoTest/>
         <ChildCom/>
-        <Child :messageParent="message" :dataNumParent="dataNum" @changeBtn="change"/> -->
+        <Child :messageParent="message" :dataNumParent="dataNum" @changeBtn="change"/> &ndash;&gt;
         <Category :titleCountryParent="titleCountry">
             <template  slot-scope="demoslot">
-<!--                {{demoslot}}这里的demoslot是一个对象，里面包含了slotCountry这个属性-->
+&lt;!&ndash;                {{demoslot}}这里的demoslot是一个对象，里面包含了slotCountry这个属性&ndash;&gt;
             <ul v-for="c in demoslot.slotCountry" :key="c.id" >
-<!--                这里的slotCountry是在Category组件中定义的-->
+&lt;!&ndash;                这里的slotCountry是在Category组件中定义的&ndash;&gt;
                 <li>{{c.name}}</li>
             </ul>
             </template>
-<!--            <a href="" slot="footer">更多国家</a>-->
+&lt;!&ndash;            <a href="" slot="footer">更多国家</a>&ndash;&gt;
         </Category>
         <category>
             <template slot-scope="demoCountry">
@@ -27,7 +27,7 @@
                 <h3 v-for="c in demoCountry.slotCountry" :key="c.id">{{c.name}} </h3>
             </template>
         </category>
-<!--        <Category  :titleCountryParent="titleFood">
+&lt;!&ndash;        <Category  :titleCountryParent="titleFood">
             <ul v-for="c in foods" :key="c.id" slot="center">
                 <li>{{c.name}}</li>
             </ul>
@@ -37,7 +37,25 @@
         <Category :titleCountryParent="titlePhone">
             <img src="https://ecmb.bdimg.com/tam-ogel/42128323_-1799595190_480_320.jpg" slot="center">
             <a href="" slot="footer">小米商城</a>
-        </Category>-->
+        </Category>&ndash;&gt;
+        <TestSlot>
+            <template slot-scope="testslot">
+                <ul>
+                    <li v-for="h in testslot.holiday" :key="h.id">{{h.name}}</li>
+                </ul>
+            </template>
+        </TestSlot>
+        <TestSlot>
+            <template slot-scope="testslot">
+                <h4 v-for="h in testslot.holiday" :key="h.id">{{h.name}}</h4>
+            </template>
+        </TestSlot>-->
+<!--        以下是vueRouter的例子-->
+        <router-link to="/Home"><h5>home</h5></router-link>
+        <router-link to="/About"><h5>about</h5></router-link>
+        <router-link to="/User"><h5>user</h5></router-link>
+<!--        router-view指定的是路由匹配到的组件呈现的位置-->
+        <router-view />
     </div>
 </template>
 
@@ -47,9 +65,11 @@
 // import ChildCom from './components/ChildCom.vue';
 // import Child from './components/Child.vue';
 import Category from './components/Category.vue';
+import TestSlot from "@/components/TestSlot.vue";
 export default {
     name: 'App',
     components: {
+        TestSlot,
         // HelloWorld,
         // DemoTest,
         // ChildCom,
